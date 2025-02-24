@@ -3,9 +3,10 @@ package controllers
 import (
 	"encoding/json"
 	"errors"
-	"github.com/leojoe04/Rincones_llaneros/models"
 	"strconv"
 	"strings"
+
+	"github.com/leojoe04/Rincones_llaneros/models"
 
 	"github.com/astaxie/beego"
 )
@@ -36,7 +37,7 @@ func (c *EventosController) Post() {
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {
 		if _, err := models.AddEventos(&v); err == nil {
 			c.Ctx.Output.SetStatus(201)
-			c.Data["json"] = map[string]interface{}{"success": true, "status": 201, "Message": "Creado correctamente", "evento creado": v}
+			c.Data["json"] = map[string]interface{}{"success": true, "status": 201, "Message": "Se agrego un nuevo evento", "evento agregado": v}
 		} else {
 			c.Data["json"] = err.Error()
 		}
